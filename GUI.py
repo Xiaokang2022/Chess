@@ -75,7 +75,6 @@ class Window:
         m1.add_separator()
         m1.add_command(label='游戏设置', command=self.setting)
         m1.add_command(label='新游戏', accelerator='Ctrl+N', command=self.new)
-        m1.add_command(label='联网', command=self.login)
         m1.add_command(label='退出', accelerator='Ctrl+Q', command=exit)
         m2.add_command(label='游戏说明', accelerator='Ctrl+H', command=self.help)
         m2.add_command(label='统计数据', command=self.statistic)
@@ -84,8 +83,8 @@ class Window:
 
     def init_bind(self) -> None:
         """ 绑定 """
-        self.canvas.bind('<Motion>', self.touch)
-        self.canvas.bind('<Button-1>', self.choose)
+        self.root.bind('<Motion>', self.touch)
+        self.root.bind('<Button-1>', self.choose)
         self.root.bind('<Control-h>', lambda _: self.help())        # 游戏说明
         self.root.bind('<Control-z>', lambda _: rule.revoke())      # 撤销
         self.root.bind('<Control-y>', lambda _: rule.recovery())    # 恢复
@@ -282,7 +281,7 @@ class Window:
             """ 默认设定 """
             scale.set('1')
             scale.cursor_flash()
-            level.set('3')
+            level.set('2')
             level.cursor_flash()
             peace.set('60')
             peace.cursor_flash()
@@ -389,11 +388,6 @@ class Window:
         path_ = './data'
         canvas_set(path_)
 
-    def login(self) -> None:
-        """ 登录界面 """
-        m = MiniWin(self.root, '登录', 300, 200)
-        toplevel, canvas = m.toplevel, m.canvas
-
     @classmethod
     def chess(cls) -> None:
         """ 初始化棋子 """
@@ -471,9 +465,9 @@ class Window:
         """ 电脑移动 """
         if not Global.player:
             return
-        statistic(AI=1)
+        # statistic(AI=1)
         data, score = intelligence(Global.chesses, color, config['level'])
-        print('SCORE:', score)
+        print('\033[33mSCORE\033[0m:', score)
         pos, delta = data
         Global.chesses[pos[1]][pos[0]].move(*delta)
         rule.switch()
@@ -555,7 +549,7 @@ class Chess:
 
     def move(self, flag: bool, x: int, y: int, cache: bool = False) -> None:
         """ 移动 """
-        statistic(Move=1)
+        # statistic(Move=1)
         self.lift()
         self.virtual_delete()
         self.x += x

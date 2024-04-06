@@ -79,7 +79,7 @@ def rule(chesses: list[list], chess, flag_: bool = False) -> list[tuple[bool, in
                         flag = True
                     elif not flag:
                         append(x, y, False)
-    else:  # 卒兵
+    elif chess.name in '卒兵':  # 卒兵
         flag = chess.name == '兵'
         y = -1 if flag else 1
         if 0 <= chess.y+y <= 9:
@@ -87,6 +87,8 @@ def rule(chesses: list[list], chess, flag_: bool = False) -> list[tuple[bool, in
         if (chess.y+y <= 3 and flag) or (chess.y+y >= 6 and not flag):
             for x in [i for i in (-1, 1) if 0 <= chess.x+i <= 8]:
                 append(x, 0)
+    else:
+        raise ValueError
 
     return pos
 
