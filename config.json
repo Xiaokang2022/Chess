@@ -3,5 +3,6 @@
     "auto_scale": true,
     "virtual": true,
     "level": 4,
-    "peace": 60
+    "peace": 60,
+    "algo": 0
 }

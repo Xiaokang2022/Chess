@@ -22,11 +22,11 @@
 """
 
 # 版本号
-__version__ = '1.6'
+__version__ = '1.7'
 # 作者
 __author__ = '小康2022'
 # 更新日期
-__update__ = '2024/03/26'
+__update__ = '2024/04/22'
 
 if __name__ == '__main__':
     from winsound import Beep

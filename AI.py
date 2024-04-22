@@ -75,22 +75,24 @@ def _lst_to_array(data: list[list[int]]) -> ctypes.Array[ctypes.Array[ctypes.c_i
 
 def choose_algo(data: list[list[int]], depth: int, reverse: bool) -> alpha_beta_search.Node:
     """"""
-    # # 极小极大搜索算法
-    # node = min_max_search.min_max_search(
-    #     data, depth, reverse=reverse)
+    match config["algo"]:
+        case 1:
+            # 极小极大搜索算法
+            node = min_max_search.min_max_search(
+                data, depth, reverse=reverse)
+        case 2:
+            # α-β 剪枝算法
+            node = alpha_beta_search.alpha_beta_search(
+                data, depth, reverse=reverse)
+        case _:
+            # α-β 剪枝算法（C++ 实现）
+            node = alpha_beta_search.Node(
+                ctypes.WinDLL('./PyDLL.dll').search(
+                    _lst_to_array(data), depth, (result := (ctypes.c_int * 4)()), reverse),
+                ((result[0], result[1]), (result[2], result[3])))
 
-    # # α-β 剪枝算法
-    # node = alpha_beta_search.alpha_beta_search(
-    #     data, depth, reverse=reverse)
-
-    # α-β 剪枝算法（C++ 实现）
-    node = alpha_beta_search.Node(
-        ctypes.WinDLL('./PyDLL.dll').search(
-            _lst_to_array(data), depth, (result := (ctypes.c_int * 4)()), reverse),
-        ((result[0], result[1]), (result[2], result[3])))
     if node.operation[0][0] == -1:
         node.operation = None
-
     return node
 
 

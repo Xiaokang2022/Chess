@@ -274,7 +274,8 @@ class Window:
                 virtual=eval(info.value),
                 auto_scale=eval(auto_scale.value),
                 level=int(level.get()),
-                peace=int(peace.get()))
+                peace=int(peace.get()),
+                algo=1 if ai.value == "极小极大搜索" else 2 if ai.value == "alpha-beta 剪枝" else 0)
             toplevel.destroy()
 
         def default() -> None:
@@ -287,6 +288,7 @@ class Window:
             peace.cursor_flash()
             info.configure(text='True')
             auto_scale.configure(text='True')
+            ai.configure(text="alpha-beta 剪枝(C++实现)")
 
         m = MiniWin(self.root, '游戏设置', 400, 300)
         toplevel, canvas = m.toplevel, m.canvas
@@ -302,7 +304,9 @@ class Window:
         canvas.create_text(
             20*S, 110*S, text='AI最大搜索深度', font=('楷体', round(12*S)), anchor='w')
         canvas.create_text(
-            20*S, 140*S, text='和棋判定回合数', font=('楷体', round(12*S)), anchor='w')
+            20*S, 140*S, text='AI 搜索算法', font=('楷体', round(12*S)), anchor='w')
+        canvas.create_text(
+            20*S, 170*S, text='和棋判定回合数', font=('楷体', round(12*S)), anchor='w')
 
         scale = tkt.CanvasEntry(
             canvas, 220*S, 10*S, 100*S, 20*S, 5*S, justify='center', font=('楷体', round(12*S)),
@@ -328,10 +332,16 @@ class Window:
         level.set(str(config['level']))
         level.cursor_flash()
         peace = tkt.CanvasEntry(
-            canvas, 140*S, 130*S, 100*S, 20*S, 5*S, justify='center', font=('楷体', round(12*S)),
+            canvas, 140*S, 160*S, 100*S, 20*S, 5*S, justify='center', font=('楷体', round(12*S)),
             color_fill=tkt.COLOR_NONE)
         peace.set(str(config['peace']))
         peace.cursor_flash()
+        ai = tkt.CanvasButton(canvas, 120*S, 130*S, 200*S, 20*S, 5*S,
+                              "极小极大搜索" if config[
+                                  'algo'] == 1 else "alpha-beta 剪枝" if config['algo'] == 2 else "alpha-beta 剪枝(C++实现)",
+                              font=('楷体', round(12*S)), color_fill=tkt.COLOR_NONE,
+                              command=lambda: ai.configure(text=("极小极大搜索" if ai.value == "alpha-beta 剪枝(C++实现)" else "alpha-beta 剪枝" if ai.value == "极小极大搜索" else "alpha-beta 剪枝(C++实现)")))
+        ai.command_ex['press'] = lambda: PlaySound(VOICE_BUTTON, SND_ASYNC)
 
         tkt.CanvasButton(canvas, 314*S, 271*S, 80*S, 23*S, 6*S, '保存', font=('楷体', round(12*S)), command=save
                          ).command_ex['press'] = lambda: PlaySound(VOICE_BUTTON, SND_ASYNC)
