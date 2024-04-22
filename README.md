@@ -1,30 +1,59 @@
-## 中国象棋
+# Chess 🚀
 
-version: 1.6
+A Chinese chess program based on tkintertools and written in pure Python.
 
-### 开发环境
+![](./preview.png)
 
-UI 底层是 [tkintertools](https://github.com/Xiaokang2022/tkintertools)，但此处使用的测试版本的 tkintertools，已在项目中，无需通过 pip 再次安装（即使安装，版本也不对）
+这个程序是混合使用 `tkinter` 与 `tkintertools` 模块实现的，[`tkintertools`](https://github.com/Xiaokang2022/tkintertools) 是我独自开发的一款用于美化 tkinter 并提供一些高级功能的第三方 Python 模块！🎉
 
-Python 版本：3.12（低一点的版本，如 3.10 应该也可以运行）
+> [!Note]  
+> Since the original program was written by me a long time ago, the `tkintertools` module uses the test version, and the AI of the program was added later, and the previous code quality is relatively poor, please understand!
 
-### 基本功能
+## How to use
 
-1. 双人对弈
-2. 人机对战
-3. 残局挑战
-4. 局域网联机
+### Before use
 
-对战均可以让子，残局挑战的棋局来自互联网，被我转换成 FEN 格式后保存在 data 文件夹中。
+Make sure your Python version is 3.12 or greater.
 
-音频文件也来自互联网，侵权请联系我后删除。
+### Choose the mode
 
-### 关于 AI
+run the `main.py` and choose a game mode you want.
 
-AI 有 3 个，可在源代码中进行替换：
+I've provided **4** modes, Three of them can be selected in "新游戏"，and "残局挑战" needs to be selected in the "棋局库".
 
-* 极小极大搜索算法（Python 实现）
-* alpha-beta 剪枝（Python 实现）
-* alpha-beta 剪枝（C++ 实现）
+### One last step
 
-C++ 实现的，已编译成名为 PyDLL 的 DLL 文件，通过 Python 的 ctypes 模块调用
+have fun! 😁
+
+## Brief introduction
+
+### Base Features
+
+1. Two-player match
+2. Man-machine battles
+3. Endgame Challenge
+4. LAN connection
+
+### About the AI
+
+I've provided **2** AI algorithms, one of which also provides an implementation of C++20:
+
+1. **Minimum-Max search algorithm**
+    - Python: min_max_search.py
+2. **Alpha-beta pruning algorithm**
+    - Python: alpha_beta_search.py
+    - C++:
+        * src: ./cpp/HelloWorld.cpp
+        * dll: ./PyDLL.dll
+
+You can change them in the settings.
+
+## Disclaimer
+
+Some of the pictures and other resources involved in the project come from the Internet and are not used for commercial purposes.
+
+Please contact me for infringement: 2951256653@qq.com
+
+---
+
+If you want to know more about this program, see: https://xiaokang2022.blog.csdn.net/article/details/128852029
