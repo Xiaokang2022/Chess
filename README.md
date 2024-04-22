@@ -48,6 +48,25 @@ I've provided **2** AI algorithms, one of which also provides an implementation 
 
 You can change them in the settings.
 
+### Some really great features
+
+When you're playing chess, the terminal actually has an output! For example:
+
+<font color="yellow">SCORE</font>: 2  
+<font color="blue">STEP</font>: 5  
+〇〇<font color="green">象士将士象马车  
+车</font>〇〇〇〇〇〇〇〇  
+〇<font color="green">炮马</font>〇〇〇〇<font color="green">炮</font>〇  
+<font color="green">卒</font>〇<font color="green">卒</font>〇<font color="green">卒</font>〇<font color="green">卒</font>〇<font color="green">卒</font>  
+〇〇〇〇〇〇〇〇〇  
+〇〇〇〇〇〇〇〇〇  
+<font color="red">兵</font>〇<font color="red">兵</font>〇<font color="red">兵</font>〇<font color="red">兵</font>〇<font color="red">兵</font>  
+〇〇<font color="red">馬</font>〇<font color="red">砲</font>〇〇<font color="red">砲</font>〇  
+〇〇〇〇〇〇〇〇〇  
+〇<font color="red">車相仕帥仕相馬車</font>  
+
+It provides a very clear picture of the game state and the current AI score.
+
 ## Disclaimer
 
 Some of the pictures and other resources involved in the project come from the Internet and are not used for commercial purposes.
