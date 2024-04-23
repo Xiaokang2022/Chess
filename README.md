@@ -4,7 +4,7 @@ A Chinese chess program based on tkintertools and written in pure Python.
 
 ![](./preview.png)
 
-这个程序是混合使用 `tkinter` 与 `tkintertools` 模块实现的，[`tkintertools`](https://github.com/Xiaokang2022/tkintertools) 是我独自开发的一款用于美化 tkinter 并提供一些高级功能的第三方 Python 模块！🎉
+This program is implemented using a mix of `tkinter` and `tkintertools` modules, [`tkintertools`](https://github.com/Xiaokang2022/tkintertools) is a third-party Python module that I developed on my own to beautify `tkinter` and provide some advanced features! 🎉
 
 > [!Note]  
 > Since the original program was written by me a long time ago, the `tkintertools` module uses the test version, and the AI of the program was added later, and the previous code quality is relatively poor, please understand!
