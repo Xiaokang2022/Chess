@@ -9,6 +9,14 @@ A Chinese chess program based on tkintertools and written in pure Python.
 > [!Note]  
 > Since the original program was written by me a long time ago, the `tkintertools` module uses the test version, and the AI of the program was added later, and the previous code quality is relatively poor, please understand!
 
+<a href="https://star-history.com/#Xiaokang2022/Chess&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Xiaokang2022/Chess&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Xiaokang2022/Chess&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Xiaokang2022/Chess&type=Date" />
+ </picture>
+</a>
+
 ## How to use
 
 ### Before use
