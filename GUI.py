@@ -304,7 +304,7 @@ class Window:
         canvas.create_text(
             20*S, 110*S, text='AI最大搜索深度', font=('楷体', round(12*S)), anchor='w')
         canvas.create_text(
-            20*S, 140*S, text='AI 搜索算法', font=('楷体', round(12*S)), anchor='w')
+            20*S, 140*S, text='AI搜索算法', font=('楷体', round(12*S)), anchor='w')
         canvas.create_text(
             20*S, 170*S, text='和棋判定回合数', font=('楷体', round(12*S)), anchor='w')
 
@@ -336,7 +336,7 @@ class Window:
             color_fill=tkt.COLOR_NONE)
         peace.set(str(config['peace']))
         peace.cursor_flash()
-        ai = tkt.CanvasButton(canvas, 120*S, 130*S, 200*S, 20*S, 5*S,
+        ai = tkt.CanvasButton(canvas, 110*S, 130*S, 200*S, 20*S, 5*S,
                               "极小极大搜索" if config[
                                   'algo'] == 1 else "alpha-beta 剪枝" if config['algo'] == 2 else "alpha-beta 剪枝(C++实现)",
                               font=('楷体', round(12*S)), color_fill=tkt.COLOR_NONE,
