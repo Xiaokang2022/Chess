@@ -1,13 +1,15 @@
 # Chess 🚀
 
-A Chinese chess program based on tkintertools and written in pure Python.
+A Chinese chess program based on tkintertools and written in Python 3.12 and C++ 20.
 
 ![](./preview.png)
 
 This program is implemented using a mix of `tkinter` and `tkintertools` modules, [`tkintertools`](https://github.com/Xiaokang2022/tkintertools) is a third-party Python module that I developed on my own to beautify `tkinter` and provide some advanced features! 🎉
 
-> [!Note]  
-> Since the original program was written by me a long time ago, the `tkintertools` module uses the test version, and the AI of the program was added later, and the previous code quality is relatively poor, please understand!
+> [!NOTE]  
+> Since the original program was written by me one year ago, the `tkintertools` module uses the test version, and the AI of the program was added later, and the previous code quality is relatively poor, please understand. 😅
+
+## Star History
 
 <a href="https://star-history.com/#Xiaokang2022/Chess&Date">
  <picture>
@@ -21,7 +23,8 @@ This program is implemented using a mix of `tkinter` and `tkintertools` modules,
 
 ### Before use
 
-Make sure your Python version is 3.12 or greater.
+> [!IMPORTANT]  
+> Make sure your Python version is **3.12** or greater and C++ version is **20** or greater.
 
 ### Choose the mode
 
@@ -50,18 +53,24 @@ I've provided **2** AI algorithms, one of which also provides an implementation 
     - Python: min_max_search.py
 2. **Alpha-beta pruning algorithm**
     - Python: alpha_beta_search.py
-    - C++:
+    - C++ (default):
         * src: ./cpp/HelloWorld.cpp
         * dll: ./PyDLL.dll
 
-You can change them in the settings.
+You can change them in the settings. By the way, default value of the search depth is 4.
+
+> [!TIP]  
+> Due to the smaller number of pieces in endgame mode, the search space is smaller, and you can increase the AI's search depth a little more, and the results could be even better!
+
+> [!CAUTION]  
+> You can also modify the pieces of the individual AI algorithms to evaluate the scores if you want, but be careful not to set the score to a limit value (like `math.inf`), which will cause the algorithm to not come up with the correct result!
 
 ### Some really great features
 
 When you're playing chess, the terminal actually has an output! For example:
 
 <font color="yellow">SCORE</font>: 2  
-<font color="blue">STEP</font>: 5  
+<font color="royalblue">STEP</font>: 5  
 〇〇<font color="green">象士将士象马车  
 车</font>〇〇〇〇〇〇〇〇  
 〇<font color="green">炮马</font>〇〇〇〇<font color="green">炮</font>〇  
@@ -75,11 +84,9 @@ When you're playing chess, the terminal actually has an output! For example:
 
 It provides a very clear picture of the game state and the current AI score.
 
-## Disclaimer
-
-Some of the pictures and other resources involved in the project come from the Internet and are not used for commercial purposes.
-
-Please contact me for infringement: 2951256653@qq.com
+> [!WARNING]  
+> Some of the pictures and other resources involved in the project come from the Internet and are not used for commercial purposes.  
+> Please contact me for infringement: 2951256653@qq.com
 
 ---
 
