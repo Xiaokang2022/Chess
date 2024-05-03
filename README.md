@@ -91,7 +91,8 @@ It provides a very clear picture of the game state and the current AI score.
 ## Known Bugs
 
 - [ ] When the AI algorithm can't find anything that can get rid of the dead chess ending, it will report an error and cause the thread to crash, which in turn will cause the computer to be in a state of "thinking" without proceeding to the next step.
-
+- [ ] When starting a new game, threads from previous games will not be killed, causing the game to become unusually stuttering.
+- [ ] When connected to a local area network, when one party disconnects, the other party may crash or freeze.
 - [ ] Some of the code on statistics is broken.
 
 ---
