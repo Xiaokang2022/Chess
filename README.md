@@ -88,6 +88,12 @@ It provides a very clear picture of the game state and the current AI score.
 > Some of the pictures and other resources involved in the project come from the Internet and are not used for commercial purposes.  
 > Please contact me for infringement: 2951256653@qq.com
 
+## Known Bugs
+
+- [ ] When the AI algorithm can't find anything that can get rid of the dead chess ending, it will report an error and cause the thread to crash, which in turn will cause the computer to be in a state of "thinking" without proceeding to the next step.
+
+- [ ] Some of the code on statistics is broken.
+
 ---
 
 If you want to know more about this program, see: https://xiaokang2022.blog.csdn.net/article/details/128852029
