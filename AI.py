@@ -87,7 +87,7 @@ def choose_algo(data: list[list[int]], depth: int, reverse: bool) -> alpha_beta_
         case _:
             # α-β 剪枝算法（C++ 实现）
             node = alpha_beta_search.Node(
-                ctypes.WinDLL('./PyDLL.dll').search(
+                ctypes.WinDLL('./alpha_beta_search.dll').search(
                     _lst_to_array(data), depth, (result := (ctypes.c_int * 4)()), reverse),
                 ((result[0], result[1]), (result[2], result[3])))
 

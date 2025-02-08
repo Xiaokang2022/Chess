@@ -54,8 +54,8 @@ I've provided **2** AI algorithms, one of which also provides an implementation 
 2. **Alpha-beta pruning algorithm**
     - Python: alpha_beta_search.py
     - C++ (default):
-        * src: ./cpp/HelloWorld.cpp
-        * dll: ./PyDLL.dll
+        * src: ./cpp/alpha_beta_search.cpp
+        * dll: ./alpha_beta_search.dll
 
 You can change them in the settings. By the way, default value of the search depth is 4.
 
