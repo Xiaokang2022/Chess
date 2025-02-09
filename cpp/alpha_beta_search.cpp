@@ -1,8 +1,9 @@
 /// alpha-beta search
 
 #include <cmath>
-#include <list>
-#include <map>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
 
 
 // the coordinate of chess
@@ -16,7 +17,7 @@ typedef int ID;
 
 
 // score of each chess
-const std::map<ID, int> SCORE_TABLE = {
+const std::unordered_map<ID, int> SCORE_TABLE = {
 	{0, 0},
 	{1, 100},
 	{2, 3},
@@ -37,7 +38,7 @@ const std::map<ID, int> SCORE_TABLE = {
 };
 
 
-const std::map<int, std::list<Coordinate>> DELTA = {
+const std::unordered_map<int, std::vector<Coordinate>> DELTA = {
 	{1, {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}},
 	{2, {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}}},
 	{3, {{-2, -2}, {-2, 2}, {2, 2}, {2, -2}}},
@@ -76,8 +77,8 @@ static float evaluate(int data[10][9], float score = 0) {
 
 
 // get all valid coordinates on board
-static std::list<Coordinate> valid_coordinate(int data[10][9], bool reverse = false) {
-	std::list<Coordinate> valid_coordinates;
+static std::vector<Coordinate> valid_coordinate(int data[10][9], bool reverse = false) {
+	std::vector<Coordinate> valid_coordinates;
 	for (int i = 0; i < 10; i++)
 		for (int j = 0; j < 9; j++)
 			if ((reverse && data[i][j] < 0) || (!reverse && data[i][j] > 0))
@@ -106,8 +107,8 @@ static bool _find(int id) {
 
 
 // get all possible destination of chess
-static std::list<Coordinate> possible_destination(int data[10][9], int i, int j) {
-	std::list<Coordinate> possible_destinations;
+static std::vector<Coordinate> possible_destination(int data[10][9], int i, int j) {
+	std::vector<Coordinate> possible_destinations;
 	int id = data[i][j];
 	int abs_id = std::abs(id);
 	int ni, nj;
@@ -220,8 +221,8 @@ static bool valid_operation(int data[10][9], Operation operation) {
 	int key_id = reverse ? -1 : 1;
 	int sv = data[si][sj], ev = data[ei][ej];
 	process(data, si, sj, ei, ej);
-	std::list<Coordinate> valid_coordinates = valid_coordinate(data, !reverse);
-	std::list<Coordinate> valid_coordinates_filtered;
+	std::vector<Coordinate> valid_coordinates = valid_coordinate(data, !reverse);
+	std::vector<Coordinate> valid_coordinates_filtered;
 	for (auto& coord : valid_coordinates)
 		if (std::abs(data[coord.first][coord.second]) >= 5)
 			valid_coordinates_filtered.push_back(coord);
@@ -251,13 +252,20 @@ static bool valid_operation(int data[10][9], Operation operation) {
 
 
 // get all operations
-static std::list<Operation> get_operations(int data[10][9], bool reverse = false) {
-	std::list<Operation> valid_operations;
+static std::vector<Operation> get_operations(int data[10][9], bool reverse = false) {
+	std::vector<Operation> valid_operations;
 	Operation operation;
 	for (auto& coordinate : valid_coordinate(data, reverse))
 		for (auto& destination : possible_destination(data, coordinate.first, coordinate.second))
 			if (valid_operation(data, operation = { coordinate, destination }))
 				valid_operations.push_back(operation);
+
+	std::sort(valid_operations.begin(), valid_operations.end(), [&data](const Operation& a, const Operation& b) {
+		int a_score = SCORE_TABLE.at(abs(data[a.second.first][a.second.second]));
+		int b_score = SCORE_TABLE.at(abs(data[b.second.first][b.second.second]));
+		return a_score > b_score;
+	});
+
 	return valid_operations;
 }
 
