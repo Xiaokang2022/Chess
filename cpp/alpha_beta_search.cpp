@@ -1,19 +1,19 @@
 /// alpha-beta search
 
-#include <cmath>
-#include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <utility>
+#include <vector>
 
 
 // the coordinate of chess
-typedef std::pair<int, int> Coordinate;
+using Coordinate = std::pair<int, int>;
 
 // a valid operation
-typedef std::pair<Coordinate, Coordinate> Operation;
+using Operation = std::pair<Coordinate, Coordinate>;
 
 // all ids of chesses
-typedef int ID;
+using ID = int;
 
 
 // score of each chess
@@ -69,8 +69,8 @@ public:
 
 // get an evaluate score of the board data
 static float evaluate(int data[10][9], float score = 0) {
-	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < 9; j++)
+	for (int i = 0; i < 10; ++i)
+		for (int j = 0; j < 9; ++j)
 			score += data[i][j] < 0 ? -SCORE_TABLE.at(-data[i][j]) : SCORE_TABLE.at(data[i][j]);
 	return score;
 }
@@ -79,8 +79,8 @@ static float evaluate(int data[10][9], float score = 0) {
 // get all valid coordinates on board
 static std::vector<Coordinate> valid_coordinate(int data[10][9], bool reverse = false) {
 	std::vector<Coordinate> valid_coordinates;
-	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < 9; j++)
+	for (int i = 0; i < 10; ++i)
+		for (int j = 0; j < 9; ++j)
 			if ((reverse && data[i][j] < 0) || (!reverse && data[i][j] > 0))
 				valid_coordinates.push_back({ i, j });
 	return valid_coordinates;
@@ -100,8 +100,7 @@ static void process(int data[10][9], int si, int sj, int ei, int ej) {
 
 static bool _find(int id) {
 	for (int i : {0, 2, 4, 5, 7, 9})
-		if (id == i)
-			return true;
+		return id == i;
 	return false;
 }
 
@@ -145,7 +144,7 @@ static std::vector<Coordinate> possible_destination(int data[10][9], int i, int 
 	}
 	else if (abs_id == 5) {
 		int _delta[3][2] = { {id < 0 ? 1 : -1, 0}, { 0, 1 }, {0, -1} };
-		for (auto delta : _delta) {
+		for (auto& delta : _delta) {
 			ni = i + delta[0], nj = j + delta[1];
 			if (0 <= ni && ni <= 9 && 0 <= nj && nj <= 8)
 				if (id * data[ni][nj] <= 0)
@@ -233,10 +232,10 @@ static bool valid_operation(int data[10][9], Operation operation) {
 				recover(data, si, sj, ei, ej, sv, ev);
 				return false;
 			}
-	for (int i = 0; i < 3; i++)
-		for (int j = 3; j <= 5; j++)
+	for (int i = 0; i < 3; ++i)
+		for (int j = 3; j <= 5; ++j)
 			if (data[i][j] == -1) {
-				for (int ni = i + 1; ni < 10; ni++) {
+				for (int ni = i + 1; ni < 10; ++ni) {
 					if (data[ni][j] == 0)
 						continue;
 					else if (data[ni][j] == 1) {
@@ -314,12 +313,12 @@ extern "C" _declspec(dllexport) float search(int data[10][9], int depth, int res
 
 // API for Python
 extern "C" _declspec(dllexport) void all_operations(int data[10][9], int i, int j, int operation[18][2]) {
-	for (int i = 0; i < 18; i++)
+	for (int i = 0; i < 18; ++i)
 		operation[i][0] = -1;
 	int count = 0;
 	for (auto& destination : possible_destination(data, i, j))
 		if (valid_operation(data, { { i, j }, destination })) {
 			std::tie(operation[count][0], operation[count][1]) = destination;
-			count++;
+			++count;
 		}
 }
